@@ -1,0 +1,144 @@
+{%extends 'trunk_or_treat/base.html'%}
+
+{%block content%}
+<main>
+    <h1>Dudley Hill Trunk or Treat</h1>
+    <h3 id='one'>Make this year extra trunky and treaty by signing up to do something below!</h3>
+    
+    <!--Three columns containing Trunk, room and soup lists-->
+    <div class='triple-column-container'>
+        <div class='triple-column-grid'>        
+            <!--one section underneath for input and display of activities auxiliary names-->
+            <div class='trunk column'>
+                <h2>Bring A Trunk</h2>
+                {%if trunk_added == False%}
+                <div class='add'>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <input type='text' name='name' value='Add your name...'>
+                        <input class='submit' type="submit" name='submit' value="I'm bringing a trunk!">
+                    </form>
+                </div>
+                {%endif%}
+                <div class='list'>
+                    {%for trunk in trunks%}
+                        <h4>{{trunk.name}}</h4>
+                        {%if trunk.allow_delete == True%}
+                        <form method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name='name' value="{{trunk.name}}">
+                            <input class='submit' type="submit" name='submit' value="Delete trunk signup">
+                        </form>
+                        {%endif%}
+                    {%endfor%}
+                </div>
+            </div>
+
+
+
+            <div class='room column'>
+                <h2>Decorate A Room</h2>
+                {%if room_added == False%}
+                <div class='add'>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <input type='text' name='name' value='Add your name...'>
+                        <input class='submit' type="submit" name='submit' value="I want a room!">
+                    </form>
+                </div>
+                {%endif%}
+                <div class='list'>
+                    {%for room in rooms%}
+                        <h4>{{room.name}}</h4>
+                        {%if room.allow_delete == True%}
+                        <form method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name='name' value="{{room.name}}">
+                            <input class='submit' type="submit" name='submit' value="Delete room signup">
+                        </form>
+                        {%endif%}
+                    {%endfor%}
+                </div>
+            </div>
+            
+            <div class='soup column'>
+                <h2>Make Soup</h2>
+                {%if soup_added == False%}
+                <div class='add'>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <input type='text' name='name' value='Add your name...'>
+                        <input class='submit' type="submit" name='submit' value="I'm making soup!">
+                    </form>
+                </div>
+                {%endif%}
+                <div class='list'>
+                    {%for soup in soups%}
+
+                        <h4>{{soup.name}}</h4>
+                        {%if soup.allow_delete == True%}
+                        <form method='POST'>
+                            {% csrf_token %}
+                            <input class='submit' type="hidden" name='name' value="{{soup.name}}">
+                            <input class='submit' type="submit" name='submit' value="Delete soup signup">
+                        </form>
+                        {%endif%}
+                    {%endfor%}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <li>Make changes from the same machine you used to sign up. Email Tom if you run into any issues.</li>
+    
+
+    <div class='auxiliary-activity-grid'>
+        <h3>Activities provided by auxiliaries:</h3>
+        <ul>
+        {%for activity in activities%}
+            <li>{{activity.name}}: {{activity.activity}}</li>
+        {%endfor%}
+        </ul>
+        <div class='lower'>
+        <form method='POST'>
+            {% csrf_token %}
+            <input type="text" name='name' value="Auxiliary">
+            <input type="text-area" name='activity' value="activity">
+            <input type="submit" name='submit' value="Submit an activity!">
+        </form>
+        </div>
+        <li>Any auxiliaries who haven't yet done so can submit an activity above.</li>
+        <li>Someone scary like Frankenstein will approve your activity and then it'll appear in the list.</li>
+        
+        
+    </div>
+    
+</main>
+
+
+<script>
+    $(document).ready(function(){
+        $("h1").fadeIn(8000);
+    });
+
+    $(document).ready(function(){
+        $("main").fadeIn(1000);
+    });
+
+    jQuery.fn.shake = function() {
+        this.each(function(i) {
+        $(this).css({ "position": "relative" });
+        for (var x = 1; x <= 5; x++) {
+        $(this).animate({ left: -25 }, 10).animate({ left: 0 }, 50).animate({ left: 25 }, 10).animate({ left: 0 }, 50);
+        }
+        });
+        return this;
+        } 
+        $("#one").shake();
+
+</script>
+
+{%endblock%}
+
+
+

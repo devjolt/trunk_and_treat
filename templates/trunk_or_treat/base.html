@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boo!</title>
+        <link rel="shortcut icon" href="https://images.immediate.co.uk/production/volatile/sites/30/2020/02/pumpkin-3f3d894.jpg?quality=90&resize=661%2C600" type="image/x-icon" />
+
+        <link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Griffy&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <style>
+            body{
+                display:block;
+                margin:0;
+                padding:0;
+                background-color: black;
+                
+
+                
+            }
+            main{
+                display:none;
+            }
+
+            h1{
+                display:none;
+                font-family: 'Griffy', cursive;
+                font-size: 5em;
+                background: -webkit-linear-gradient(orange 60%, lime);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-align: center;
+                -webkit-animation: glow 2s ease-in-out infinite alternate;
+                -moz-animation: glow 2s ease-in-out infinite alternate;
+                animation: glow 2s ease-in-out infinite alternate;
+            }
+
+            @-webkit-keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 25px #1eff16, 0 0 30px #75f071
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ffc14d, 0 0 30px #cff88c, 0 0 40px #ffde4d, 0 0 50px #fffc4d;
+            }
+            }
+
+            h2{
+                font-family: 'Creepster', cursive;
+                font-size: 3em;
+                margin-top:-5px;
+                margin-bottom:-5px;
+            }
+
+            h2:hover{
+                animation: shake 0.3s;
+                animation-iteration-count: infinite;
+            }
+            /*Shake effects used with animation:shake time;*/
+            @keyframes shake {
+                0% { transform: translate(2px, 2px) rotate(0deg); }
+                10% { transform: translate(-2px, -3px) rotate(-2deg); }
+                20% { transform: translate(-4px, 0px) rotate(2deg); }
+                30% { transform: translate(3px, 2px) rotate(0deg); }
+                40% { transform: translate(1px, -1px) rotate(1deg); }
+                50% { transform: translate(-1px, 2px) rotate(-1deg); }
+                60% { transform: translate(-3px, 1px) rotate(0deg); }
+                70% { transform: translate(3px, 1px) rotate(-1deg); }
+                80% { transform: translate(-1px, -1px) rotate(1deg); }
+                90% { transform: translate(1px, 2px) rotate(0deg); }
+                100% { transform: translate(1px, -2px) rotate(-1deg); }
+            }
+            
+
+
+            .intro-grid{
+                display:grid;
+                grid-template-columns: 50% 50%;
+            }
+            h3{
+                font-family: 'Griffy', cursive;
+                font-size: 2em;
+                background: -webkit-linear-gradient(orange 60%, lime);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-align: center;
+            }
+            h4{
+                text-align: center;
+                font-family: 'Griffy', cursive;
+                font-size: 2em;
+                margin-top:-3px;
+                margin-bottom:-3px;
+            }
+            li{
+                font-family: 'Eater', cursive;
+                background: -webkit-linear-gradient(white 60%, lime);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-align: center;
+            }
+
+            form{
+                display: flex;
+                align-items: center;
+            }
+
+            .triple-column-container{
+                
+            }
+            .triple-column-grid{
+                margin-left: auto;
+                margin-right: auto;
+                display: grid;
+                grid-template-columns: 33% 33% 33%;
+
+            }
+
+            @media only screen and (max-width: 970px) {
+                .triple-column-grid{
+				    margin-left: auto;
+                    margin-right: auto;
+                    display: grid;
+                    grid-template-columns: 90%;
+                }
+            }
+
+            .column{
+                display: grid;
+                grid-template-columns: auto;
+                align-items: center;
+                justify-content: center;
+                margin:10px;
+                padding:10px;
+                padding-top:3px;
+                min-height:30%;
+                border-radius:10px;
+                font-family: 'Griffy', cursive;
+                font-size: 1.5em;
+            }
+                    
+            .trunk{
+                background-image: linear-gradient(to bottom right,orange 60%,lime);
+                background-size: cover;
+            }
+            
+            .room{
+                background-image: linear-gradient(to bottom right, lime 60%, purple);
+                background-size: cover;
+            }
+
+            .soup{
+                background-image: linear-gradient(to bottom right,lime, purple 80%);
+                background-size: cover;
+            }
+            .auxiliary-activity-grid{
+                display:grid;
+                grid-template-columns: auto;
+            }
+            .lower{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .submit:hover{
+                font-family: 'Eater', cursive;
+                background:black;
+                color:lime;
+                font-size: large;
+                transition:1s;
+                cursor: pointer;
+            }
+
+        </style>
+    
+    </head>
+    <body>
+        {%block content%}
+        {%endblock%}
+    </body>
+</html>
+
+
