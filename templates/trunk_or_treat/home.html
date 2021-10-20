@@ -94,11 +94,9 @@
 
     <div class='auxiliary-activity-grid'>
         <h3>Activities provided by auxiliaries:</h3>
-        <ul>
         {%for activity in activities%}
-            <li>{{activity.name}}: {{activity.activity}}</li>
+            <h4>{{activity.name}}: {{activity.activity}}</h4>
         {%endfor%}
-        </ul>
         <div class='lower'>
         <form method='POST'>
             {% csrf_token %}

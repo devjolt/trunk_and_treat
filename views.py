@@ -11,7 +11,7 @@ def home(request):
         def make_row_and_cookie(Obj, name, cookie_name):
             obj = Obj(name=name)
             obj.save()
-            name_dashes = re.sub(' ', '-', name)#convert any spaces in name to dashes for cookie storage
+            name_dashes = re.sub(' ', '%', name)#convert any spaces in name to dashes for cookie storage
             response = HttpResponseRedirect('/trunk')
             response.set_cookie(cookie_name, name_dashes, max_age=4233600)
             return response
@@ -19,7 +19,7 @@ def home(request):
         def delete_row_and_cookie(Obj, name, cookie_name):
             obj = Obj.objects.filter(name=name)
             obj.delete()
-            name_dashes = re.sub(' ', '-', name)#convert any spaces in name to dashes for cookie storage
+            name_dashes = re.sub(' ', '%', name)#convert any spaces in name to dashes for cookie storage
             response = HttpResponseRedirect('/trunk')#delete cookie and redirect to same page
             response.delete_cookie(cookie_name)
             return response
@@ -42,7 +42,7 @@ def home(request):
             activity = request.POST['activity']
             idea = Activity(name=name, activity=activity)
             idea.save()
-            name_dashes = re.sub(' ', '-', name)#convert any spaces in name to dashes for cookie storage
+            name_dashes = re.sub(' ', '%', name)#convert any spaces in name to dashes for cookie storage
             response = HttpResponseRedirect('/trunk/confirmation')
             response.set_cookie('activity', name_dashes, max_age=4233600)
             return response
@@ -52,8 +52,9 @@ def home(request):
             context_list = []
             objects = Obj.objects.all()
             if cookie_name in request.COOKIES.keys():
-                name = re.sub('-', ' ', request.COOKIES[cookie_name])
+                name = re.sub('%', ' ', request.COOKIES[cookie_name])
                 for obj in objects:
+                    print(obj.name, name)
                     if obj.name == name:
                         added_flag = True
                         context_list.append({'name':name, 'allow_delete':True})
@@ -63,6 +64,8 @@ def home(request):
                 context_list = [{'name':obj.name, 'allow_delete':False} for obj in objects]
                 added_flag = False
             return context_list, added_flag
+
+
         trunks, trunk_added = context_dict_and_flag(Trunk, 'trunk')
         rooms, room_added = context_dict_and_flag(Room, 'room')
         soups, soup_added = context_dict_and_flag(Soup, 'soup')
